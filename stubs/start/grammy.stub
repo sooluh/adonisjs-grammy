@@ -1,0 +1,6 @@
+{{{
+  exports({
+    to: app.makePath('start/grammy.ts')
+  })
+}}}
+// import grammy from 'adonisjs-grammy/services/main'

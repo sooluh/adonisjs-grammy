@@ -1,0 +1,14 @@
+{{{
+  exports({ to: app.configPath('grammy.ts') })
+}}}
+import env from '#start/env'
+import { defineConfig } from "adonisjs-grammy";
+
+const grammyConfig = defineConfig({
+  apiToken: env.get('TELEGRAM_API_TOKEN'),
+  secretToken: env.get('TELEGRAM_SECRET_TOKEN'),
+  onTimeout: 'throw',
+  timeoutMilliseconds: 10_000,
+})
+
+export default grammyConfig
