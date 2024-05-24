@@ -16,8 +16,7 @@ node ace add adonisjs-grammy
 ## Next steps?
 
 1. Adjust the env configuration.
-2. Create a tunnel if running on a local machine (recomended: <sup><sub>`cloudflared`</sub></sup>
-   or <sup><sub>`loophole`</sub></sup>)
+2. Create a tunnel if running on a local machine (recomended: `cloudflared` or `loophole`)
 3. Set the webhook to `http://<tunneling-addres>/<bot-token>` using the following API.
 
    ```
