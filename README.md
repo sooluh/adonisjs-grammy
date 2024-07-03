@@ -1,4 +1,4 @@
-![adonisjs-grammy](https://socialify.git.ci/sooluh/adonisjs-grammy/image?description=1&descriptionEditable=Telegram%20bot%20with%20grammY%20in%20AdonisJS.&font=Jost&forks=1&issues=1&logo=https%3A%2F%2Ftelegram.org%2Fimg%2Ft_logo.svg&name=1&owner=1&pattern=Charlie%20Brown&pulls=1&stargazers=1&theme=Auto)
+![adonisjs-grammy](https://socialify.git.ci/sooluh/adonisjs-grammy/image?description=1&descriptionEditable=Grammy%20Web%20Framework%20Adapter%20for%20AdonisJS.&font=Jost&forks=1&issues=1&logo=https%3A%2F%2Ftelegram.org%2Fimg%2Ft_logo.svg&name=1&owner=1&pattern=Charlie%20Brown&pulls=1&stargazers=1&theme=Auto)
 
 # Introduction
 
