@@ -8,11 +8,12 @@
  */
 
 import { Bot } from 'grammy'
+import type { Context } from 'grammy'
 import { GrammyConfig } from './types/main.js'
 
-class Grammy extends Bot {
-  constructor(config: GrammyConfig) {
-    super(config.apiToken)
+class Grammy<C extends Context> extends Bot {
+  constructor(config: GrammyConfig<C>) {
+    super(config.apiToken, config.botConfig)
   }
 }
 

@@ -9,8 +9,9 @@
 
 import { RuntimeException } from '@poppinss/utils'
 import type { GrammyConfig } from './types/main.js'
+import type { Context } from 'grammy'
 
-export function defineConfig<T extends GrammyConfig>(config: T): T {
+export function defineConfig<C extends Context, T extends GrammyConfig<C>>(config: T): T {
   if (!config) {
     throw new RuntimeException('Invalid config file')
   }

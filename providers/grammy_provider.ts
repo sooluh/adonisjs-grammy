@@ -8,17 +8,18 @@
  */
 
 import Grammy from '../src/grammy.js'
-import { Update } from 'grammy/types'
+import type { Update } from 'grammy/types'
 import { HttpContext } from '@adonisjs/core/http'
 import { GrammyConfig } from '../src/types/main.js'
 import { ApplicationService } from '@adonisjs/core/types'
 import { WebhookReplyEnvelope } from 'grammy'
+import type { Context } from 'grammy'
 
-export default class GrammyProvider {
-  private bot?: Grammy
+export default class GrammyProvider<C extends Context = Context> {
+  private bot?: Grammy<C>
   private initialized = false
 
-  private config: GrammyConfig = {
+  private config: GrammyConfig<C> = {
     apiToken: '',
     secretToken: '',
     onTimeout: 'throw',
@@ -30,7 +31,7 @@ export default class GrammyProvider {
   async register() {
     this.app.container.singleton('grammy', async () => {
       const { default: Instance } = await import('../src/grammy.js')
-      const config = this.app.config.get<GrammyConfig>('grammy', this.config)
+      const config = this.app.config.get<GrammyConfig<C>>('grammy', this.config)
 
       return new Instance(config)
     })
@@ -39,17 +40,23 @@ export default class GrammyProvider {
   async boot() {
     const router = await this.app.container.make('router')
     const logger = await this.app.container.make('logger')
-    const config = this.app.config.get<GrammyConfig>('grammy', this.config)
+    const config = this.app.config.get<GrammyConfig<C>>('grammy', this.config)
 
     this.bot = await this.app.container.make('grammy')
-    const { apiToken, secretToken: secret, onTimeout: timeout, timeoutMilliseconds: ms } = config
+    const {
+      apiToken,
+      secretToken: secret,
+      onTimeout: timeout,
+      timeoutMilliseconds: ms,
+      botRouteName: path,
+    } = config
 
     if (!this.initialized) {
       await this.bot.init()
       this.initialized = true
     }
 
-    router.post(apiToken, async (ctx: HttpContext) => {
+    router.post(path ? path : apiToken, async (ctx: HttpContext) => {
       if (ctx.request.header('X-Telegram-Bot-Api-Secret-Token') !== secret) {
         return ctx.response.status(401).send('secret token is wrong')
       }

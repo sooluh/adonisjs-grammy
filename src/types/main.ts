@@ -7,13 +7,16 @@
  * file that was distributed with this source code.
  */
 
+import type { BotConfig, Context } from 'grammy'
 import Grammy from '../grammy.js'
 
-export interface GrammyService extends Grammy {}
+export interface GrammyService<C extends Context = Context> extends Grammy<C> {}
 
-export interface GrammyConfig {
+export interface GrammyConfig<C extends Context = Context> {
   apiToken: string
   secretToken?: string
   onTimeout?: 'throw' | 'return' | ((...args: any[]) => unknown)
   timeoutMilliseconds?: number
+  botRouteName?: string
+  botConfig?: BotConfig<C>
 }
