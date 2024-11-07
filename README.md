@@ -42,6 +42,61 @@ grammy.command('start', (ctx) => ctx.reply('Welcome! Up and running.'))
 grammy.on('message', (ctx) => ctx.reply('Got another message!'))
 ```
 
+# Configuration
+
+The configuration file is located at `config/grammy.ts`. Here are the available configuration options:
+
+## Environment Variables
+
+| Variable | Type | Required | Description |
+|----------|------|----------|-------------|
+| TELEGRAM_API_TOKEN | string | Yes | Your Telegram Bot API token obtained from [@BotFather](https://t.me/BotFather) |
+| TELEGRAM_SECRET_TOKEN | string | No | Optional secret token to secure your webhook endpoint |
+
+## Configuration Options
+
+The `config/grammy.ts` file allows you to customize the following options:
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| apiToken | string | `process.env.TELEGRAM_API_TOKEN` | The Telegram Bot API token |
+| secretToken | string | `process.env.TELEGRAM_SECRET_TOKEN` | Optional secret token for webhook security |
+| onTimeout | 'throw' \| 'return' \| Function | 'throw' | Defines behavior when webhook request times out |
+| timeoutMilliseconds | number | 10_000 | Webhook request timeout in milliseconds |
+| botRouteName | string | apiToken | Custom route name for the webhook endpoint |
+| botConfig | object | undefined | Additional [bot configuration options](https://grammy.dev/ref/core/botconfig#botconfig) |
+
+Example configuration:
+
+```typescript
+import env from '#start/env'
+import { defineConfig } from 'adonisjs-grammy'
+
+const grammyConfig = defineConfig({
+  apiToken: env.get('TELEGRAM_API_TOKEN'),
+  secretToken: env.get('TELEGRAM_SECRET_TOKEN'),
+  
+  // Timeout handling
+  timeoutMilliseconds: 10_000, // 10 seconds
+  onTimeout: 'throw', // or 'return', or custom function
+  
+  // Custom route name (optional)
+  botRouteName: 'telegram-bot',
+  
+  // Additional bot configuration
+  botConfig: {
+    client: {
+      baseFetchConfig: {
+        compress: true,
+      },
+    },
+  },
+})
+
+export default grammyConfig
+```
+
+
 # License
 
 The MIT License (MIT). Please see [LICENSE](./LICENSE.md) file for more information.

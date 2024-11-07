@@ -8,9 +8,10 @@
  */
 
 import app from '@adonisjs/core/services/app'
-import { GrammyService } from '../src/types/main.js'
+import type { GrammyService } from '../src/types/main.js'
+import type { Context } from 'grammy'
 
-let grammy: GrammyService
+let grammy: GrammyService<Context>
 
 await app.booted(async () => {
   grammy = await app.container.make('grammy')
