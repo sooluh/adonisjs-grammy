@@ -56,7 +56,7 @@ export default class GrammyProvider<C extends Context = Context> {
       this.initialized = true
     }
 
-    router.post(path ? path : apiToken, async (ctx: HttpContext) => {
+    router.post(path || apiToken, async (ctx: HttpContext) => {
       if (ctx.request.header('X-Telegram-Bot-Api-Secret-Token') !== secret) {
         return ctx.response.status(401).send('secret token is wrong')
       }
