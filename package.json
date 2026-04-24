@@ -43,9 +43,9 @@
     "index:commands": "adonis-kit index build/commands"
   },
   "devDependencies": {
-    "@adonisjs/core": "^6.2.1",
+    "@adonisjs/core": "^7.3.1",
     "@adonisjs/eslint-config": "^1.2.1",
-    "@adonisjs/lucid": "^19.0.0",
+    "@adonisjs/lucid": "^22.4.2",
     "@adonisjs/prettier-config": "^1.2.1",
     "@adonisjs/tsconfig": "^1.2.1",
     "@commitlint/cli": "^18.5.0",
@@ -74,7 +74,7 @@
     "grammy": "^1.23.0"
   },
   "peerDependencies": {
-    "@adonisjs/core": "^6.2.1"
+    "@adonisjs/core": "^7.3.1"
   },
   "author": {
     "name": "Abu Masyail",
